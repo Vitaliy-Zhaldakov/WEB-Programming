@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Батарейки</title>
+</head>
+<style>
+    .wrap{
+        margin: 0 auto;
+        background: grey;
+        text-align: center;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: row;
+    }
+    .battery{
+        margin: 1%;
+        padding-right: 10%;
+        width: 5%;
+        border: 2px solid yellow;
+        background: white;
+        display: flex;
+    }
+    .plus{
+        width: 10px;
+        height: 20px;
+        background: black;
+        border-radius: 0 10px 10px 0;
+        align-self: center;
+        margin-left: auto;
+        margin-right: -215%;
+    }
+    #bat1{
+        background: red;
+        width: 100%;
+        margin: 0;
+        height: 80px;
+    }
+    #bat2{
+        background: blue;
+        width: 150%;
+        margin: 0;
+        height: 80px;
+    }
+    #bat3{
+        background: green;
+        width: 300%;
+        margin: 0;
+        height: 80px;
+    }
+</style>
+<body>
+    <div class="wrap">
+           <div class="battery">
+               <div id="bat1">1</div>
+               <div class="plus"></div>
+           </div>
+            <div class="battery">
+                <div id="bat2">2</div>
+                <div class="plus"></div>
+            </div>
+            <div class="battery">
+                <div id="bat3">3</div>
+                <div class="plus"></div>
+            </div>
+    </div>
+</body>
+</html>
