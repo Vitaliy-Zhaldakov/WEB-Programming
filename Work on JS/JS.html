@@ -9,6 +9,7 @@
    <h1 style="text-align: center">Задания по JS - Вариант 4</h1>
    
    <script>  
+    // Открытие блока   
     function show_hide(elem, callback){
         if (elem.style.display == 'none')
             elem.style.display = 'block';
@@ -18,16 +19,22 @@
     }
     </script>
    
-   <button class="showBut" onclick="show_hide(document.getElementById('task1'), displayTime)">Задание 1 - Дата/время</button>
+   <button class="showBut">Задание 1 - Дата/время</button>
    <div id="task1" style="display: none">
       <script>
-       function less_10(elem_date){
+        // Назначение слушателя на событие по кнопке
+    let button = document.getElementsByClassName('showBut')[0];
+        button.addEventListener('click', () => show_hide(document.getElementById('task1'), displayTime));
+          
+    // Приведение к виду <0 + число>      
+    function less_10(elem_date){
         if (elem_date < 10) 
             return '0' + elem_date
         else 
             return elem_date
         }  
        
+    // Время      
     function displayTime(){
         let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         let elem = document.getElementById('task1');
@@ -39,12 +46,10 @@
     </script>
    </div>
    
-   <button class="showBut" onclick="show_hide(document.getElementById('task2'))">Задание 2 - Календарь</button>
+   <button class="showBut">Задание 2 - Календарь</button>
    <div id="task2" style="display: none">
       
     <ul class="head">
-        <li class="previous"><i class="fas fa-angle-double-left"></i></li>
-        <li class="next"><i class="fas fa-angle-double-right"></i></li>
         <li class="month"></li>
         <li class="year"></li>
     </ul>
@@ -61,6 +66,10 @@
     </ul>
        
     <script>
+     // Назначение слушателя на событие по кнопке
+    button = document.getElementsByClassName('showBut')[1];
+        button.addEventListener('click', () => show_hide(document.getElementById('task2')));
+        
         let curDate = new Date(),
             // Число месяца
             curDateNumber = curDate.getDate(),
@@ -71,8 +80,6 @@
             monthContainer = container.getElementsByClassName('month')[0],
             yearContainer = container.getElementsByClassName('year')[0],
             daysContainer = container.getElementsByClassName('days')[0],
-            prev = container.getElementsByClassName('previous')[0],
-            next = container.getElementsByClassName('next')[0],
             
             months = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
 
@@ -121,45 +128,26 @@
         }
         
         function checkDate(day, month, year) {
-                const date = new Date(year, month - 1, day);
+                const date = new Date(year, month, day);
 
                 return (date.getDay() == 0 || date.getDay() == 6);
             }
 
         setCalendar(curYear,curMonth);
-
-        
-        prev.onclick = function () {
-        let curDate = new Date(yearContainer.textContent,monthName.indexOf(monthContainer.textContent));
-
-        curDate.setMonth(curDate.getMonth() - 1);
-
-        let curYear = curDate.getFullYear(),
-            curMonth = curDate.getMonth();
-
-        setMonthCalendar(curYear,curMonth);
-        }
-
-        next.onclick = function () {
-        let curDate = new Date(yearContainer.textContent,monthName.indexOf(monthContainer.textContent));
-
-        curDate.setMonth(curDate.getMonth() + 1);
-
-        let curYear = curDate.getFullYear(),
-            curMonth = curDate.getMonth();
-
-        setMonthCalendar(curYear,curMonth);
-        }
     </script>
    </div>
    
-   <button class="showBut" onclick="show_hide(document.getElementById('task3'))">Задание 3 - Нахождение элементов в DOM - дереве</button>
+   <button class="showBut">Задание 3 - Нахождение элементов в DOM - дереве</button>
    <div id="task3" style="display: none">
     <table><tr><td>1</td><td>1</td></tr></table>
     <table><tr><td>2</td><td>2</td></tr></table>
     <table><tr><td>3</td><td>3</td></tr></table>
        <script>
-           function countTables() {
+           // Назначение слушателя на событие по кнопке
+        button = document.getElementsByClassName('showBut')[2];
+            button.addEventListener('click', () => show_hide(document.getElementById('task3'), countTables));
+           
+        function countTables() {
                let children = document.getElementById('task3').children,
                    tables = [];
                for (let i = 0; i < children.length; i++)
@@ -174,11 +162,15 @@
        </script>
    </div>
 
-    <button class="showBut" onclick="show_hide(document.getElementById('task4'), changing_block)">Задание 4 - Изменение объекта</button>
+    <button class="showBut">Задание 4 - Изменение объекта</button>
     <div id="task4" style="display: none">
         <img src="clock.png" alt="Часы">
         
         <script>
+            // Назначение слушателя на событие по кнопке
+        button = document.getElementsByClassName('showBut')[3];
+            button.addEventListener('click', () => show_hide(document.getElementById('task4'), changing_block));
+            
         let angle = 0;
         function changing_block() {
             let block = document.getElementById('task4'),
@@ -201,13 +193,17 @@
         </script>
     </div>
     
-    <button class="showBut" onclick="show_hide(document.getElementById('task5'), timeout)">Задание 5 - Удаление элементов</button>
+    <button class="showBut">Задание 5 - Удаление элементов</button>
     <div id='task5' style='display: none'>
         <div class='circle' style="background-color: red"></div>
         <div class='circle' style="background-color: yellow"></div>
         <div class='circle' style="background-color: forestgreen"></div>
        
        <script>
+           // Назначение слушателя на событие по кнопке
+        button = document.getElementsByClassName('showBut')[4];
+            button.addEventListener('click', () => show_hide(document.getElementById('task5'), timeout));
+           
         function timeout() {
             if (document.getElementById('task5').style.display == 'block')
                 setTimeout(manipulationElem, 800);
@@ -226,17 +222,24 @@
                 let indexElem = prompt("Введите номер элемента");
                 if (indexElem != null) {
                     indexElem = Number(indexElem);
-                    document.getElementById('task5').children[indexElem+1].remove();
+                    if (document.getElementById('task5').children[indexElem+1].nodeName == 'DIV')
+                        document.getElementById('task5').children[indexElem+1].remove();
+                    else
+                        document.getElementById('task5').children[indexElem+2].remove();
                 }
             }
         }</script>
     </div>
     
-    <button class="showBut" onclick="show_hide(document.getElementById('task6'))">Задание 6 - Обработка событий</button>
+    <button class="showBut">Задание 6 - Обработка событий</button>
     <div id='task6' style='display: none'>
         <img id='human' src="human.png" alt="human" >
         
         <script>
+            // Назначение слушателя на событие по кнопке
+        button = document.getElementsByClassName('showBut')[5];
+            button.addEventListener('click', () => show_hide(document.getElementById('task6')));
+            
         let elem = document.getElementById('human');
         let shift = 0; 
             
@@ -256,7 +259,7 @@
         </script>
     </div>
     
-    <button class="showBut" onclick="show_hide(document.getElementById('task7'))">Задание 7 - Меню</button>
+    <button class="showBut">Задание 7 - Меню</button>
     <div id='task7' style="display: none">
         <ul class='dishesList'>Список блюд
         <li class='dish-hide'>Пицца</li>
@@ -266,6 +269,10 @@
         </ul>
         
         <script>
+            // Назначение слушателя на событие по кнопке
+        button = document.getElementsByClassName('showBut')[6];
+            button.addEventListener('click', () => show_hide(document.getElementById('task7')));
+            
         let dishes = document.querySelector('.dishesList'),
             list = document.querySelectorAll('.dish-hide');
         dishes.onclick = function showList() {
@@ -289,13 +296,28 @@
         </script>
     </div>
     
-    <button class="showBut" onclick="show_hide(document.getElementById('task8'))">Задание 8 - Непрозрачная картинка</button>
+    <button class="showBut">Задание 8 - Непрозрачная картинка</button>
     <div id='task8' style='display: none; margin-bottom: 12%'>
         <img class='gift' src="gift.png" alt="gift">
         <p class='surprise'>СЮРПРИЗ!!!</p>
         
         <script>
-        let picture = document.querySelector('.gift')
+            // Назначение слушателя на событие по кнопке
+        button = document.getElementsByClassName('showBut')[7];
+            button.addEventListener('click', () => show_hide(document.getElementById('task8'), showGift));
+            
+        let picture = document.querySelector('.gift'),
+            i = 0,
+            text = document.querySelector('.surprise');
+        function showGift() {
+            i += 0.2
+            picture.style.opacity = i;
+            if (i == 1) {
+                text.style.opacity = 1;
+                return
+            }
+            setTimeout(showGift, 300);
+        }
         
         picture.onmouseover = function changeOpacity() {
             picture.style.opacity = 0.4;
@@ -306,7 +328,7 @@
         </script>
     </div>
     
-    <button class="showBut" onclick="show_hide(document.getElementById('task9'), validate)">Задание 9 - Форма регистрации</button>
+    <button class="showBut">Задание 9 - Форма регистрации</button>
     <div id='task9' style='display: none'>
        <h2>Форма регистрации разработчика</h2>
         <form name='registration' action="" method="post">
@@ -315,8 +337,8 @@
             <p>Фамилия<em>*</em></p><input class='field' type="text" name='surname' required>
             <p>Имя<em>*</em></p><input class='field' type="text" name='name' required>
             <p>Дата рождения<em>*</em></p><input type="date" name='date' required>
-            <p>E-mail<em>*</em></p><input class='field_email' type="email" name='email' required>
-            <p>Телефон<em>*</em></p><input class='field' type="tel" pattern="+7(\d{3}) \d{3}-\d{2}-\d{2}" name='phone' required>
+            <p>E-mail<em>*</em></p><input class='field' type="email" name='email' required>
+            <p>Телефон<em>*</em></p><input class='field' type="tel" pattern="[78]\d{10}" name='phone' required>
             <p>Пол<em>*</em></p>
             <div class='sex'>
             <p>М<input type="radio" name='sex'></p>
@@ -327,7 +349,7 @@
             <fieldset>
             <legend>Данные аккаунта</legend>
             <p>Логин<em>*</em></p><input class='field'type="text" name='login' required>
-            <p>Пароль<em>*</em></p><input class='field' type="password" name='password' required>
+            <p>Пароль<em>*</em></p><input class='field' type="password" pattern="\w{6,}" name='password' required>
             <p class='confirmPas'>Подтвердите пароль<em>*</em></p><input class='confirmPas' type="password" name='confirmPas' required>
             </fieldset>
             
@@ -358,33 +380,21 @@
         </form>
         
         <script>
-            function validate() {
-                // Массив полей класса .field
-                let fields = document.forms['registration'].querySelectorAll('.field');
-                // Проверка E-mail
-                if (!document.forms['registration'].email.value.includes('@'))
-                    document.forms['registration'].email.classList.add('field_invalid');
-                else
-                    document.forms['registration'].email.classList.remove('field_invalid');
-                
-                // Проверка полей на пустоту
-                for (let i = 0; i < fields.length; i++)
-                    if (fields[i].value == 0)
-                        fields[i].classList.add('field_invalid');
-                    else
-                        fields[i].classList.replace('field_invalid','field_valid');
-                
-                // Проверка поля "Пароль" и вывод поля "Подтверждения"
-                if (document.forms['registration'].password.value != 0) {
-                    document.querySelector('.confirmPas').classList.add('active');
-                    document.forms['registration'].confirmPas.classList.add('active');
+            // Назначение слушателя на событие по кнопке
+        button = document.getElementsByClassName('showBut')[8];
+            button.addEventListener('click', () => show_hide(document.getElementById('task9')));
+            
+            let password = document.forms['registration'].password;
+            password.onchange = function passValidate() {
+            
+            if (document.forms['registration'].password.matches(':valid')) {
+                document.forms['registration'].confirmPas.classList.add('active');
+                document.querySelector('.confirmPas').classList.add('active');
                 }
                 else {
-                    document.querySelector('.confirmPas').classList.remove('active');
                     document.forms['registration'].confirmPas.classList.remove('active');
+                    document.querySelector('.confirmPas').classList.remove('active');
                 }
-                    
-                setTimeout(validate, 500)
             }
         </script>
     </div>
