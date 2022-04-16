@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: cornflowerblue;
+    background-color: #7DA3A1;
 }
 
 .showBut {
@@ -19,7 +19,7 @@ body {
     width: 20%;
     padding-bottom: 3%;
     background-color: forestgreen;
-    /*text-align: center;*/
+    text-align: center;
     color: white;
     font-size: 20px;
 }
@@ -43,24 +43,11 @@ body {
     margin: 1%;
 }
 
-.previous,
-.next {
-    cursor: pointer;
-}
-
-.previous {
-    float: left;
-}
-
-.next {
-    float: right;
-}
-
 .weekdays {
     margin-top: -1.5%;
     padding-right: 2.8%;
     display: flex;
-    width: 24.5%;
+    width: 30%;
     background-color: white;
     list-style: none;
     justify-content: center;
@@ -143,12 +130,13 @@ td {
     font-size: 30px;
     padding-top: 150px;
     padding-left: 150px;
+    opacity: 0;
 }
 
 .gift {
     margin-left: -60px;
     width: 40%;
-    opacity: 1;
+    opacity: 0;
     position: absolute;
     transition: opacity .4s linear;
 }
@@ -200,21 +188,13 @@ input, select {
     display: block;
 }
 
-input:focus {
+input:focus,
+.field:valid:focus {
     outline: 0;
     border: 4px solid forestgreen;
 }
 
-.field_valid {
-    border: 2px solid forestgreen;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
-    
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 17px 17px;
-}
-
-.field_invalid {
+.field:invalid {
     border: 3px solid red;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
     
@@ -223,8 +203,18 @@ input:focus {
     background-size: 17px 17px;
 }
 
-.field_invalid:focus {
-    border: 3px solid red;
+.field:valid {
+    border: 2px solid forestgreen;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 17px 17px;
+}
+
+
+.field:invalid:focus {
+    border: 4px solid red;
 }
 
 .sex {
