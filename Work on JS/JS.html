@@ -4,13 +4,34 @@
     <meta charset="UTF-8">
     <title>Гармошка</title>
     <link rel = "stylesheet" type="text/css" href="JS.css">
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
-   <h1 style="text-align: center">Задания по JS - Вариант 4</h1>
+  <header>
+      <h1 style="text-align: center">Задания по JS - Вариант 4</h1>
+      <div id="mainMenu">
+          <ul class="menu"><h3>Меню</h3>
+            <li class="elems">Салат</li>
+            <li class="elems">Пицца</li>
+            <li class="elems">Шаурма</li>
+          </ul>
+        <ul class="menu"><h3>Ссылки</h3>
+            <li class="elems"><a href="">Главная страница</a></li>
+            <li class="elems"><a href="">Тыкни</a></li>
+        </ul>
+    </div>
+  </header>
+  
+  <script>
+      // Ниспадающее меню
+        $(".menu").click(function() {
+            $(this.children).slideToggle("slow");
+        });
+    </script>
    
    <script>  
     // Открытие блока   
-    function show_hide(elem, callback){
+    function show_hide(elem, callback) {
         if (elem.style.display == 'none')
             elem.style.display = 'block';
         else
@@ -350,7 +371,7 @@
             <legend>Данные аккаунта</legend>
             <p>Логин<em>*</em></p><input class='field'type="text" name='login' required>
             <p>Пароль<em>*</em></p><input class='field' type="password" pattern="\w{6,}" name='password' required>
-            <p class='confirmPas'>Подтвердите пароль<em>*</em></p><input class='confirmPas' type="password" name='confirmPas' required>
+            <p class='confirmPas'>Подтвердите пароль<em>*</em></p><input class='field confirmPas' type="password" name='confirmPas' required>
             </fieldset>
             
             <fieldset>
@@ -388,8 +409,12 @@
             password.onchange = function passValidate() {
             
             if (document.forms['registration'].password.matches(':valid')) {
+                let password = document.forms['registration'].querySelector("[name='password']"),
+                    confirmPas = document.forms['registration'].querySelector("[name='confirmPas']");
                 document.forms['registration'].confirmPas.classList.add('active');
                 document.querySelector('.confirmPas').classList.add('active');
+                
+                confirmPas.pattern = password.value;   
                 }
                 else {
                     document.forms['registration'].confirmPas.classList.remove('active');
