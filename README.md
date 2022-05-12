@@ -2,4 +2,4 @@
 Designing websites
 
 Work on Java-Script
-and other
+using JQuery, AJAX, PHP
