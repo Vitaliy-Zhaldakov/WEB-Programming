@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WEB-server</title>
+    <link rel = "stylesheet" type="text/css" href="main.css">
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+</head>
+<body> 
+    <header><h2>Форма регистрации</h2></header>
+        <form action="" method="post">
+            <p>ФИО</p><input class='field' type="text" name='name' required>
+            <p>E-mail</p><input class='field' type="email" name='email' required>
+            <p>Телефон</p><input class='field' type="tel" pattern="[78]\d{10}" name='phone' required>
+            <p>Адрес</p><input class='field' type="text" name='address' required>
+            
+            <input class='button' type="submit" value='Отправить'>
+        </form>
+        
+        <div id='div_answer'></div>
+        
+        <script>
+            // Вызов функции отправки формы на сервер
+            $('form').submit(function() {
+                send_form('div_answer');
+                return false; 
+		});
+            // Отправка формы
+            function send_form(div_answer) {
+                $.ajax({
+                    url:     "mail.php", //url страницы
+                    type:     "POST", //метод отправки
+                    dataType: "html", //формат данных
+                    // Сеарилизуем объект
+                    data: $('form').serialize(),
+        
+                    //Данные отправлены успешно
+                    success: function(response) { 
+        	           result = response;
+        	           $('#'+div_answer).html(result);
+    	           },
+                    // Данные не отправлены
+    	           error: function(response) { 
+                    $('#'+div_answer).html('Ошибка. Данные не отправлены.');
+    	           }
+ 	          });
+            }
+        </script>
+        
+</body>
+</html>
