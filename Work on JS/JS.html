@@ -24,7 +24,7 @@
   
   <script>
       // Ниспадающее меню
-        $(".menu").click(function() {
+        $(".menu").on('click', function() {
             $(this.children).slideToggle("slow");
         });
     </script>
@@ -352,7 +352,7 @@
     <button class="showBut">Задание 9 - Форма регистрации</button>
     <div id='task9' style='display: none'>
        <h2>Форма регистрации разработчика</h2>
-        <form name='registration' action="" method="post">
+        <form name='registration' action="mail.php" method="post">
            <fieldset>
            <legend>Контактная информация</legend>
             <p>Фамилия<em>*</em></p><input class='field' type="text" name='surname' required>
@@ -405,22 +405,25 @@
         button = document.getElementsByClassName('showBut')[8];
             button.addEventListener('click', () => show_hide(document.getElementById('task9')));
             
-            let password = document.forms['registration'].password;
-            password.onchange = function passValidate() {
-            
-            if (document.forms['registration'].password.matches(':valid')) {
-                let password = document.forms['registration'].querySelector("[name='password']"),
-                    confirmPas = document.forms['registration'].querySelector("[name='confirmPas']");
-                document.forms['registration'].confirmPas.classList.add('active');
-                document.querySelector('.confirmPas').classList.add('active');
+            // Проверка правильности пароля и подтверждения
+            $('input[name=password]').on('change', function() {
+                let confirmPas = $('input[name=confirmPas]');
                 
-                confirmPas.pattern = password.value;   
-                }
+                if ($(this).is(':valid')) {
+                    $('.error').remove();
+                    
+                    confirmPas.addClass('active');
+                    $('.confirmPas').addClass('active');
+                   
+                    confirmPas.attr('pattern', $(this).val());
+               }
                 else {
-                    document.forms['registration'].confirmPas.classList.remove('active');
-                    document.querySelector('.confirmPas').classList.remove('active');
+                    confirmPas.removeClass('active');
+                    $('.confirmPas').removeClass('active');
+                    
+                    $(this).after('<p class="error">Пароль должен содержать минимум 6 символов</p>');
                 }
-            }
+            });  
         </script>
     </div>
 </body>
